@@ -1,0 +1,20 @@
+//burger image//
+
+<h1>Eat-Da-Burger</h1>
+
+<ul>
+    {{#each burger}}
+        <li>
+            {{this.id}}. {{this.burgerText}}
+            <button data-burgerID="{{this.id}}" class="devourBtn">Devour It!</button>
+        </li>
+    {{/each}}
+</ul>
+
+<form class="create-burger">
+    //text box//
+    <textarea name="burgerText" id="userInput" cols="8" rows="40"></textarea>
+    //submit button//
+    <button type="submit">Submit</button>
+</form>
+<p>Enter a burger you want to eat. Click the "Submit" button.</p>
