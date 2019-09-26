@@ -14,30 +14,21 @@ router.get("/", function (req, res) {
     });
 });
 
-router.post("/api/burgers", function (req, res) {
+router.post("/burgers/insertOne", function (req, res) {
     burger.insertOne([
-        "burger_name",
+        "burger_name"
     ], [
             req.body.name
         ], function (result) {
-            res.json(result);
+            console.log(result);
+            res.redirect("/");
         });
 });
 
-router.put("/api/burgers/:id", function (req, res) {
-    var condition = "id = " + req.params.id;
-
-    console.log("condition", condition);
-
-    burger.updateOne({
-        devoured: true
-    },  condition, function (result) {
-        if (result.changedRows == 0) {
-            // If no rows were changed, then the ID must not exist, so 404
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+router.put("/burgers/updateOne", function (req, res) {
+   burger.updateOne(req.body.burger_id, function (result) {
+            console.log(result);
+            res.redirect("/");
     });
 });
 

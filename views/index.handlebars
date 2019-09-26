@@ -6,8 +6,8 @@
         {{#unless this.devoured}}
         <li>
             {{this.burger_name}}
-            <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
-                <input type="hidden" name="devoured" value="true">
+            <form method="POST" action="burgers/updateOne?_method=PUT">
+                <input type="hidden" name="burger_id" type="text" value="{{this.id}}">
                 <button type="submit">Devour It!</button>
             </form>
         </li>
@@ -32,9 +32,7 @@
 </ul>
 
 <h2>Enter a burger you want to eat. Click the "Submit" button.</h2>
-<form class="create-update-form" action="burgers/insertOne" method="POST">
-    <div class="form-group">
-        <input type="text" name="burger_name">
-    </div>    
+<form action="burgers/insertOne" method="POST">
+    <input type="text" name="burger_name" class="form-control" value="">  
     <button type="submit">Create Burger!</button>
 </form>
