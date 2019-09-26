@@ -1,7 +1,3 @@
-//CLI for heroku deployment:
-// heroku login
-// heroku create
-
 // Import MySQL connection.
 var connection = require("../config/connection.js");
 
@@ -39,7 +35,6 @@ function objToSql(ob) {
       arr.push(key + "=" + value);
     }
   }
-
   // translate array of strings to a single comma-separated string
   return arr.toString();
 }
@@ -71,7 +66,6 @@ var orm = {
       if (err) {
         throw err;
       }
-
       cb(result);
     });
   },
@@ -89,25 +83,11 @@ var orm = {
       if (err) {
         throw err;
       }
-
-      cb(result);
-    });
-  },
-  delete: function(table, condition, cb) {
-    var queryString = "DELETE FROM " + table;
-    queryString += " WHERE ";
-    queryString += condition;
-
-    connection.query(queryString, function(err, result) {
-      if (err) {
-        throw err;
-      }
-
       cb(result);
     });
   }
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (burger.js).
 module.exports = orm;
  
