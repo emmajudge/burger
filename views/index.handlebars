@@ -1,20 +1,40 @@
-//burger image//
+<h1>Vegan Black Metal Burgers</h1>
 
-<h1>Eat-Da-Burger</h1>
-
+<h2>Available Burgers</h2>
 <ul>
-    {{#each burger}}
+    {{#each burgers}}
+        {{#unless this.devoured}}
         <li>
-            {{this.id}}. {{this.burgerText}}
-            <button data-burgerID="{{this.id}}" class="devourBtn">Devour It!</button>
+            {{this.burger_name}}
+            <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="true">
+                <button type="submit">Devour It!</button>
+            </form>
         </li>
+        {{/unless}}
     {{/each}}
 </ul>
 
-<form class="create-burger">
-    //text box//
-    <textarea name="burgerText" id="userInput" cols="8" rows="40"></textarea>
-    //submit button//
-    <button type="submit">Submit</button>
+<h2>Devoured Burgers</h2>
+<ul>
+    {{#each burgers}}
+        {{#if this.devoured}}
+        <li>
+            {{this.burger_name}}
+
+            <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
+                <input type="hidden" name="devoured" value="false">
+                <button type="submit">Order Another One!</button>
+            </form>
+        </li>
+        {{/if}}
+    {{/each}}
+</ul>
+
+<h2>Enter a burger you want to eat. Click the "Submit" button.</h2>
+<form class="create-update-form" action="burgers/insertOne" method="POST">
+    <div class="form-group">
+        <input type="text" name="burger_name">
+    </div>    
+    <button type="submit">Create Burger!</button>
 </form>
-<p>Enter a burger you want to eat. Click the "Submit" button.</p>
