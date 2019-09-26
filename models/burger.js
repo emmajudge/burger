@@ -11,6 +11,9 @@ var burger = {
     },
     updateOne: function (id, cb) {
         orm.updateOne("burgers", id, cb);
+    },
+    orderAgain: function (id, cb) {
+        orm.orderAgain("burgers", id, cb);
     }
 };
 

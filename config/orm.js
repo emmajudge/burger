@@ -13,7 +13,7 @@ var orm = {
     });
   },
   insertOne: function (tableInput, val, cb) {
-    connection.query("INSERT INTO " + tableInput + " (burger_name) VALUES (" + val + ");",
+    connection.query("INSERT INTO " + tableInput + ' (burger_name) VALUES ("' + val + '");',
       function (err, result) {
         if (err) {
           throw err;
@@ -24,6 +24,15 @@ var orm = {
   // An example of objColVals would be {name: panther, sleepy: true}
   updateOne: function (tableInput, condition, cb) {
     connection.query("UPDATE " + tableInput + " SET devoured=true WHERE id=" + condition + ";",
+      function (err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+  },
+  orderAgain: function (tableInput, condition, cb) {
+    connection.query("UPDATE " + tableInput + " SET devoured=false WHERE id=" + condition + ";",
       function (err, result) {
         if (err) {
           throw err;
